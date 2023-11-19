@@ -22,12 +22,6 @@ elif file_exists.upper() == "N":
 
 SPOTIPY_REDIRECT_URI = "https://localhost:3000"
 
-scope = "user-library-read"
-  
-sp_oauth = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID, 
-                                                     client_secret=SPOTIPY_CLIENT_SECRET,
-                                                     redirect_uri=SPOTIPY_REDIRECT_URI,
-                                                     scope=scope)) 
-  
-#access_token = sp_oauth.get_access_token()  
-#refresh_token = sp_oauth.get_refresh_token()  
+scope = "playlist-read-private"
+auth_manager = SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri=SPOTIPY_REDIRECT_URI, scope=scope)
+sp_oauth = spotipy.Spotify(auth_manager=auth_manager) 
