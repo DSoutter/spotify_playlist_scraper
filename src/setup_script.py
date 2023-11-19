@@ -1,5 +1,6 @@
 import os.path
-import playlist_logic as pl
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth  
 
 # Check if there's a spotify_credentials.py file
 file_exists = input("Do you have a spotify_credentials.py file? (Y/N): ")
@@ -21,4 +22,12 @@ elif file_exists.upper() == "N":
 
 SPOTIPY_REDIRECT_URI = "https://localhost:3000"
 
-pl.get_playlists()
+scope = "user-library-read"
+  
+sp_oauth = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID, 
+                                                     client_secret=SPOTIPY_CLIENT_SECRET,
+                                                     redirect_uri=SPOTIPY_REDIRECT_URI,
+                                                     scope=scope)) 
+  
+#access_token = sp_oauth.get_access_token()  
+#refresh_token = sp_oauth.get_refresh_token()  

@@ -1,15 +1,14 @@
 import os.path
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials 
+from spotipy.oauth2 import SpotifyOAuth 
+from setup_script import sp_oauth as sp 
 
-
-auth_manager = SpotifyClientCredentials()
-sp = spotipy.Spotify(auth_manager=auth_manager)
-
-user = sp.user("dsoutter")
 def get_playlists():
-    print(user["display_name"])
 
+    results = sp.current_user_saved_tracks()
+    for idx, item in enumerate(results['items']):
+        track = item['track']
+        print(idx, track['artists'][0]['name'], " – ", track['name'])
 
     # while playlists:
     #     for i, playlist in enumerate(playlists['items']):
