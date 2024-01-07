@@ -20,8 +20,11 @@ def write_to_csv():
     print(sp.playlist_items(playlist_id)["items"][0]["track"]["name"])
     print("Song Popularity:")
     print(sp.playlist_items(playlist_id)["items"][0]["track"]["popularity"])
-    print("Artist/Artists (Needs Looped):")
-    print(sp.playlist_items(playlist_id)["items"][0]["track"]["artists"][0]["name"])
+    print("Artist/Artists:")
+    for artist in sp.playlist_items(playlist_id)["items"][0]["track"]["artists"]:
+        if artist != sp.playlist_items(playlist_id)["items"][0]["track"]["artists"][0]:
+            print(", ")
+        print (artist["name"])
     print("Album:")
     print(sp.playlist_items(playlist_id)["items"][0]["track"]["album"]["name"])
     print("Album release date:")
