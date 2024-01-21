@@ -10,18 +10,18 @@ while file_exists.upper() not in ("Y", "N"):
 if file_exists.upper() == "Y":
     try:
         import spotify_credentials as creds
-        SPOTIPY_CLIENT_ID = creds.CLIENT_ID
-        SPOTIPY_CLIENT_SECRET = creds.CLIENT_SECRET
+        CLIENT_ID = creds.CLIENT_ID
+        CLIENT_SECRET = creds.CLIENT_SECRET
     except:
         print("Check the file is called \"spotify_credentials.py\" and is stored in the src folder.")
         print("There should be two variables \"CLIENT_ID\" and \"CLIENT_SECRET\"")
 
 elif file_exists.upper() == "N":
-    SPOTIPY_CLIENT_ID = input("Enter Client_ID: ")
-    SPOTIPY_CLIENT_SECRET = input("Enter Client_Secret: ")
+    CLIENT_ID = input("Enter Client_ID: ")
+    CLIENT_SECRET = input("Enter Client_Secret: ")
 
-SPOTIPY_REDIRECT_URI = "https://localhost:3000"
+REDIRECT_URI = "https://localhost:3000"
 
 scope = "playlist-read-private"
-auth_manager = SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri=SPOTIPY_REDIRECT_URI, scope=scope)
-sp_oauth = spotipy.Spotify(auth_manager=auth_manager) 
+auth_manager = SpotifyOAuth(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, redirect_uri=REDIRECT_URI, scope=scope)
+sp_oauth = spotipy.Spotify(auth_manager=auth_manager)
